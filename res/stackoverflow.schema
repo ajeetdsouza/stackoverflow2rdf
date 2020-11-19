@@ -1,0 +1,155 @@
+type Badge {
+    badge.user
+    badge.name
+    badge.date
+    badge.class
+    badge.tag_based
+}
+
+type Comment {
+    comment.post
+    comment.score
+    comment.text
+    comment.creation_date
+    comment.user
+    comment.user_display_name
+    comment.content_license
+}
+
+type Post {
+    post.type
+    post.accepted_answer
+    post.parent
+    post.creation_date
+    post.deletion_date
+    post.score
+    post.view_count
+    post.body
+    post.owner
+    post.owner_display_name
+    post.last_editor
+    post.last_editor_display_name
+    post.last_edit_date
+    post.last_activity_date
+    post.title
+    post.tags
+    post.answer_count
+    post.comment_count
+    post.favorite_count
+    post.closed_date
+    post.community_owned_date
+    post.content_license
+}
+
+type PostHistory {
+    posthistory.type
+    posthistory.post
+    posthistory.revision_guid
+    posthistory.creation_date
+    posthistory.user
+    posthistory.user_display_name
+    posthistory.comment
+    posthistory.text
+    posthistory.content_license
+}
+
+type PostLink {
+    postlink.creation_date
+    postlink.post
+    postlink.related_post
+    postlink.link_type
+}
+
+type Tag {
+    tag.name
+    tag.count
+    tag.excerpt_post
+    tag.wiki_post
+}
+
+type User {
+    user.reputation
+    user.creation_date
+    user.display_name
+    user.last_access_date
+    user.website_url
+    user.location
+    user.about_me
+    user.views
+    user.upvotes
+    user.downvotes
+    user.profile_image_url
+    user.account_id
+}
+
+badge.user: uid .
+badge.name: string @index(hash) .
+badge.date: dateTime @index(hour) .
+badge.class: int .
+badge.tag_based: bool .
+
+comment.post: uid .
+comment.score: int .
+comment.text: string .
+comment.creation_date: dateTime @index(hour) .
+comment.user: uid .
+comment.user_display_name: string .
+comment.content_license: string @index(hash) .
+
+post.type: int .
+post.accepted_answer: uid .
+post.parent: uid .
+post.creation_date: dateTime @index(hour) .
+post.deletion_date: dateTime @index(hour) .
+post.score: int .
+post.view_count: int .
+# Ideally, only questions should have `post.body` indexed, but since there
+# is no separate type for them, we index `post.body` for all `Post` types.
+post.body: string @index(fulltext) .
+post.owner: uid .
+post.owner_display_name: string .
+post.last_editor: uid .
+post.last_editor_display_name: string .
+post.last_edit_date: dateTime @index(hour) .
+post.last_activity_date: dateTime @index(hour) .
+post.title: string @index(fulltext) .
+post.tags: [uid] .
+post.answer_count: int .
+post.comment_count: int .
+post.favorite_count: int .
+post.closed_date: dateTime @index(hour) .
+post.community_owned_date: dateTime @index(hour) .
+post.content_license: string @index(hash) .
+
+posthistory.type: int .
+posthistory.post: uid .
+posthistory.revision_guid: string @index(hash) .
+posthistory.creation_date: dateTime @index(hour) .
+posthistory.user: uid .
+posthistory.user_display_name: string .
+posthistory.comment: string .
+posthistory.text: string .
+posthistory.content_license: string .
+
+postlink.creation_date: dateTime @index(hour) .
+postlink.post: uid .
+postlink.related_post: uid .
+postlink.link_type: int .
+
+tag.name: string @index(hash) .
+tag.count: int .
+tag.excerpt_post: uid .
+tag.wiki_post: uid .
+
+user.reputation: int .
+user.creation_date: dateTime @index(hour) .
+user.display_name: string @index(hash) .
+user.last_access_date: dateTime @index(hour) .
+user.website_url: string .
+user.location: string @index(hash) .
+user.about_me: string .
+user.views: int .
+user.upvotes: int .
+user.downvotes: int .
+user.profile_image_url: string .
+user.account_id: int .

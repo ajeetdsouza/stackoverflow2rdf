@@ -1,0 +1,18 @@
+[package]
+name = "stackoverflow2rdf"
+version = "0.1.0"
+authors = ["Ajeet D'Souza <98ajeet@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.32"
+clap = "3.0.0-beta.2"
+data-encoding = "2.3.1"
+env_logger = "0.8.2"
+flate2 = "1.0.19"
+log = "0.4.0"
+quick-xml = "0.19.0"
+rio_api = "0.5.0"
+rio_turtle = "0.5.0"
